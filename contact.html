@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Contact – Dash Drones Window Cleaning</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&amp;family=Outfit:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<link href="CSS/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ══════════════ NAVIGATION ══════════════ -->
+<nav>
+	<a class="nav-logo" href="index.html">Dash<span></span>Drones</a>
+	<ul class="nav-links">
+		<li><a href="index.html">Home</a></li>
+		<li><a href="about.html">About Us</a></li>
+		<li><a href="services.html">Services</a></li>
+		<li><a class="active" href="contact.html">Contact</a></li>
+		<li><a href="client-portal.php">Client Portal</a></li>
+	</ul>
+	<a class="nav-cta" href="contact.html">Book a Clean</a>
+</nav>
+<!-- ══════════════ MAIN CONTENT ══════════════ -->
+<div class="page-wrapper">
+	<!-- Hero Banner -->
+	<section class="contact-hero">
+		<p class="eyebrow">Get in Touch</p>
+		<h1>Let&rsquo;s Make Your<br>Windows <em>Shine.</em></h1>
+		<p>Whether you manage a single building or a full portfolio of properties, 
+		we&rsquo;d love to show you what drone cleaning can do. Fill in the form 
+		or reach us directly below.</p>
+	</section>
+	<!-- Contact Layout -->
+	<div class="contact-body">
+		<!-- Left: Contact Details -->
+		<div class="contact-info">
+			<h2>Contact Details</h2>
+			<div class="c-item">
+				<div class="c-icon">
+&#x1F4DE;</div>
+				<div class="c-text">
+					<h4>Phone</h4>
+					<p><a href="tel:0786779334">078 677 9334</a></p>
+				</div>
+			</div>
+			<div class="c-item">
+				<div class="c-icon">
+&#x2709;&#xFE0F;</div>
+				<div class="c-text">
+					<h4>Email</h4>
+					<p><a href="mailto:info@dash-drones.com">info@dash-drones.com</a></p>
+				</div>
+			</div>
+			<div class="c-item">
+				<div class="c-icon">
+&#x1F310;</div>
+				<div class="c-text">
+					<h4>Website</h4>
+					<p>www.dashdrones.com</p>
+				</div>
+			</div>
+			<div class="c-item">
+				<div class="c-icon">
+&#x1F4CD;</div>
+				<div class="c-text">
+					<h4>Operating Area</h4>
+					<p>Pretoria &middot; Sandton &middot; Johannesburg &amp; Greater 
+					Gauteng<br>South Africa</p>
+				</div>
+			</div>
+			<div class="c-item">
+				<div class="c-icon">
+&#x1F3EB;</div>
+				<div class="c-text">
+					<h4>Location</h4>
+					<p>Esselen Park, Tembisa<br>Gauteng, South Africa</p>
+				</div>
+			</div>
+			<div class="invest-note">
+				<h4>Investor Enquiries</h4>
+				<p>Interested in backing aerial cleaning technology in South Africa? 
+				Email us with the subject <em>&ldquo;Investment Enquiry&rdquo;</em> 
+				to arrange a briefing with Thapelo Rapetswa, CEO &amp; Founder.</p>
+			</div>
+		</div>
+		<!-- Right: Enquiry Form (submits to send_enquiry.php) -->
+		<div class="contact-form">
+			<form id="enquiryForm" action="send_enquiry.php" method="POST" onsubmit="handleEnquiry(event)" novalidate>
+				<div class="form-row">
+					<div class="form-group">
+						<label for="fname">First Name *</label>
+						<input id="fname" name="fname" placeholder="Thabo" required="" type="text" maxlength="80" autocomplete="given-name" />
+					</div>
+					<div class="form-group">
+						<label for="lname">Last Name *</label>
+						<input id="lname" name="lname" placeholder="Mokoena" required="" type="text" maxlength="80" autocomplete="family-name" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="email">Email Address *</label>
+					<input id="email" name="email" placeholder="thabo@company.co.za" required="" type="email" maxlength="254" autocomplete="email" />
+				</div>
+				<div class="form-group">
+					<label for="phone">Phone Number *</label>
+					<input id="phone" name="phone" placeholder="071 000 0000" required="" type="tel" maxlength="20" autocomplete="tel" />
+				</div>
+				<div class="form-group">
+					<label for="type">I am enquiring as a&hellip; *</label>
+					<select id="type" name="type" required="">
+					<option disabled selected="" value="">Select category
+					</option>
+					<option>Commercial Property Manager</option>
+					<option>Residential / Estate Owner</option>
+					<option>University / Institution</option>
+					<option>Investor</option>
+					<option>Other</option>
+					</select> </div>
+				<div class="form-group">
+					<label for="clean_type">Type of clean required *</label>
+					<select id="clean_type" name="clean_type" required="">
+					<option disabled selected="" value="">Select service</option>
+					<option>Standard Cleaning</option>
+					<option>Deep Cleaning</option>
+					<option>Facade Inspection</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="building">Building / Property Description *</label>
+					<textarea id="building" name="building" placeholder="Tell us about your building — number of floors, location, and how often you would like a clean..." required="" maxlength="3000"></textarea>
+				</div>
+				<button class="form-submit" type="submit">Request a Quote &#8594;
+				</button>
+				<div id="msgSuccess" class="form-msg success">
+&#10003; Quote request received! We will be in touch within 24 hours with a tailored 
+					proposal. </div>
+				<div id="msgError" class="form-msg error" role="alert"></div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- end page-wrapper -->
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer style="background-color: #003366">
+	<a class="footer-brand" href="index.html">Dash<span></span>Drones</a>
+	<p class="footer-copy">&copy; 2025 Dash Drones (Pty) Ltd &middot; Reg No: 2025/87611/07 
+	| Kempton Park, Gauteng
+
+<br>
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="privacy-policy.html">Privacy Policy</a>
+
+</p>
+	<div class="footer-links">
+		<a href="index.html">Home</a> <a href="about.html">About</a>
+		<a href="services.html">Services</a> <a href="contact.html">Contact</a>
+		<a href="client-portal.php">Client Portal</a>
+	</div>
+</footer>
+<script>
+  function validateEnquiryForm(form) {
+    const values = {
+      fname: form.fname.value.trim(),
+      lname: form.lname.value.trim(),
+      email: form.email.value.trim(),
+      phone: form.phone.value.trim(),
+      type: form.type.value.trim(),
+      clean_type: form.clean_type.value.trim(),
+      building: form.building.value.trim(),
+    };
+
+    const errors = [];
+
+    if (values.fname.length < 2 || !/^[a-zA-Z\s'\-.]+$/.test(values.fname)) {
+      errors.push('Please enter a valid first name.');
+    }
+
+    if (values.lname.length < 2 || !/^[a-zA-Z\s'\-.]+$/.test(values.lname)) {
+      errors.push('Please enter a valid last name.');
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
+      errors.push('Please enter a valid email address.');
+    }
+
+    if (!/^\+?(?:\d[\s.-]?){9,14}\d$/.test(values.phone)) {
+      errors.push('Please enter a valid phone number.');
+    }
+
+    if (!values.type) {
+      errors.push('Please select an enquiry type.');
+    }
+
+    if (!values.clean_type) {
+      errors.push('Please select the type of clean required.');
+    }
+
+    if (values.building.length < 10) {
+      errors.push('Please describe the property in at least 10 characters.');
+    }
+
+    return errors;
+  }
+
+  function showMessage(element, message, type) {
+    element.innerHTML = type === 'success'
+      ? `✓ ${message}`
+      : `✗ ${message}`;
+    element.style.display = 'block';
+  }
+
+  function handleEnquiry(e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+    const btn = form.querySelector('.form-submit');
+    const success = document.getElementById('msgSuccess');
+    const error = document.getElementById('msgError');
+
+    const clientErrors = validateEnquiryForm(form);
+    if (clientErrors.length) {
+      showMessage(error, clientErrors[0], 'error');
+      success.style.display = 'none';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    success.style.display = 'none';
+    error.style.display = 'none';
+
+    fetch('send_enquiry.php', {
+      method: 'POST',
+      body: data,
+      headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    })
+      .then(async (response) => {
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          throw new Error(payload.message || 'Something went wrong. Please try again.');
+        }
+        return payload;
+      })
+      .then((res) => {
+        if (res.success) {
+          showMessage(success, res.message || 'Quote request received! We will be in touch within 24 hours.', 'success');
+          form.reset();
+          setTimeout(() => success.style.display = 'none', 7000);
+        } else {
+          showMessage(error, res.message || 'Something went wrong. Please try again.', 'error');
+          if (res.errors) {
+            const detailText = Object.values(res.errors).join(' ');
+            error.innerHTML += `<br><small>${detailText}</small>`;
+          }
+        }
+      })
+      .catch((err) => {
+        showMessage(error, err.message || 'Something went wrong. Please try again.', 'error');
+      })
+      .finally(() => {
+        btn.disabled = false;
+        btn.textContent = 'Request a Quote →';
+      });
+  }
+</script>
+
+</body>
+
+</html>
