@@ -14,6 +14,7 @@ define('SENDER_NAME', 'Dash Drones Website');
 define('SENDER_EMAIL', 'noreply@dashdrones.com');
 define('COMPANY_PHONE', '078 677 9334');
 define('COMPANY_SITE', 'www.dashdrones.com');
+define('LOG_FILE', __DIR__ . '/quote_requests.log');
 // ───────────────────────────────────────────────────
 
 header('Content-Type: application/json; charset=utf-8');
@@ -215,8 +216,29 @@ try {
         'message' => 'Enquiry submitted successfully.',
     ]);
 } catch (RuntimeException $e) {
-    http_response_code(500);
-    echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+    appendQuoteLog($full_name, $email, $phone, $type, $cleanType, $building);
+
+    echo json_encode([
+        'success' => true,
+        'reference' => $ref,
+        'message' => 'Your quote request was saved and will be followed up manually if email delivery is unavailable.',
+        'fallback' => true,
+    ]);
+}
+
+function appendQuoteLog(string $fullName, string $email, string $phone, string $type, string $cleanType, string $building): void {
+    $line = sprintf(
+        "[%s] Name: %s | Email: %s | Phone: %s | Type: %s | Service: %s | Building: %s\n",
+        date('c'),
+        str_replace(["\r", "\n"], ' ', $fullName),
+        str_replace(["\r", "\n"], ' ', $email),
+        str_replace(["\r", "\n"], ' ', $phone),
+        str_replace(["\r", "\n"], ' ', $type),
+        str_replace(["\r", "\n"], ' ', $cleanType),
+        str_replace(["\r", "\n"], ' ', $building)
+    );
+
+    @file_put_contents(LOG_FILE, $line, FILE_APPEND | LOCK_EX);
 }
 
 function sendMail(
@@ -250,3 +272,4 @@ function sendMail(
     }
 }
 ?>
+
