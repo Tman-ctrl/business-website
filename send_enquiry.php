@@ -219,9 +219,9 @@ try {
     appendQuoteLog($full_name, $email, $phone, $type, $cleanType, $building);
 
     echo json_encode([
-        'success' => true,
+        'success' => false,
         'reference' => $ref,
-        'message' => 'Your quote request was saved and will be followed up manually if email delivery is unavailable.',
+        'message' => 'Email delivery is unavailable from this server. Your email app will open so you can send the request manually.',
         'fallback' => true,
     ]);
 }
@@ -272,4 +272,3 @@ function sendMail(
     }
 }
 ?>
-
