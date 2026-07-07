@@ -211,9 +211,39 @@
     element.style.display = 'block';
   }
 
+  function getFormValues(form) {
+    return {
+      fname: form.fname.value.trim(),
+      lname: form.lname.value.trim(),
+      email: form.email.value.trim(),
+      phone: form.phone.value.trim(),
+      type: form.type.value.trim(),
+      clean_type: form.clean_type.value.trim(),
+      building: form.building.value.trim(),
+    };
+  }
+
+  function buildMailtoLink(values) {
+    const to = 'rapetswathapelo.10@gmail.com';
+    const subject = encodeURIComponent(`Quote Request from ${values.fname} ${values.lname}`);
+    const body = encodeURIComponent([
+      `Name: ${values.fname} ${values.lname}`,
+      `Email: ${values.email}`,
+      `Phone: ${values.phone}`,
+      `Enquiry type: ${values.type}`,
+      `Service: ${values.clean_type}`,
+      '',
+      'Building / Property Description:',
+      values.building,
+    ].join('\n'));
+
+    return `mailto:${to}?subject=${subject}&body=${body}`;
+  }
+
   function handleEnquiry(e) {
     e.preventDefault();
     const form = e.target;
+    const values = getFormValues(form);
     const data = new FormData(form);
     const btn = form.querySelector('.form-submit');
     const success = document.getElementById('msgSuccess');
@@ -249,15 +279,14 @@
           form.reset();
           setTimeout(() => success.style.display = 'none', 7000);
         } else {
-          showMessage(error, res.message || 'Something went wrong. Please try again.', 'error');
-          if (res.errors) {
-            const detailText = Object.values(res.errors).join(' ');
-            error.innerHTML += `<br><small>${detailText}</small>`;
-          }
+          throw new Error(res.message || 'Something went wrong. Please try again.');
         }
       })
       .catch((err) => {
-        showMessage(error, err.message || 'Something went wrong. Please try again.', 'error');
+        showMessage(error, err.message || 'The request could not be sent automatically. Your email app will now open so you can send it directly.', 'error');
+        setTimeout(() => {
+          window.location.href = buildMailtoLink(values);
+        }, 250);
       })
       .finally(() => {
         btn.disabled = false;
