@@ -224,7 +224,7 @@
   }
 
   function buildMailtoLink(values) {
-    const to = 'info@dash-drones.com';
+    const to = 'rapetswathapelo.10@gmail.com';
     const subject = encodeURIComponent(`Quote Request from ${values.fname} ${values.lname}`);
     const body = encodeURIComponent([
       `Name: ${values.fname} ${values.lname}`,
@@ -278,9 +278,14 @@
           showMessage(success, res.message || 'Quote request received! We will be in touch within 24 hours.', 'success');
           form.reset();
           setTimeout(() => success.style.display = 'none', 7000);
-        } else {
-          throw new Error(res.message || 'Something went wrong. Please try again.');
+          return;
         }
+
+        if (res.fallback) {
+          throw new Error(res.message || 'Email delivery is unavailable from this server. Your email app will now open so you can send the request directly.');
+        }
+
+        throw new Error(res.message || 'Something went wrong. Please try again.');
       })
       .catch((err) => {
         showMessage(error, err.message || 'The request could not be sent automatically. Your email app will now open so you can send it directly.', 'error');
